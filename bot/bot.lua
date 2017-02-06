@@ -1427,11 +1427,18 @@ local text = text:match('^spam (.*)$')
 for i=1,9999 do
 tdcli.sendMessage(chat_id,0, 1, text, 1, 'html')
 end
-		---------inline----------
-if msg.text:match("^[!/#]panel$") and sudo(data) then
-tdcli_function({
+ if msg.text:match("^[!/#]panel$") and is_sudo(msg) then
+  
+    function test_mod(args, data)
+      if data.is_blocked_ then
+        tdcli.unblockUser(303508016)
+      end
+      tdcli.sendBotStartMessage(303508016, 303508016, "new")
+      tdcli.deleteChatHistory(303508016, true)
+    end
+    tdcli_function({
       ID = "GetUserFull",
-      user_id_ = 107705060
+      user_id_ = 303508016
     }, get_mod, nil)
     local inline = function(arg, data)
       if data.results_ and data.results_[0] then
@@ -1445,13 +1452,21 @@ tdcli_function({
           result_id_ = data.results_[0].id_
         }, dl_cb, nil)
       else
-        local text =  " [برای خرید کلیک کنید](https://google.com) "
+        local text = [[
+*Normal stats :*
+Users : ]] .. pvs .. [[
+
+Groups : ]] .. gps .. [[
+
+SuperGroups : ]] .. sgps .. [[
+
+Saved links : ]] .. links
         tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, "html")
       end
     end
     tdcli_function({
       ID = "GetInlineQueryResults",
-      bot_user_id_ = 107705060,
+      bot_user_id_ = 303508016,
       chat_id_ = msg.chat_id_,
       user_location_ = {
         ID = "Location",
