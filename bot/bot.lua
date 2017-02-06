@@ -932,13 +932,8 @@ if db:get('cmd:Lock:'..chat_id) == 'Lock' and not mod(data) then
 return
 end
 --------Commands ------
-if msg.content_.text_:match("^[!/#]getpro") then 
-local matches = {
-      msg.content_.text_:match("[!/#](getpro) (%d+)")
-   }
-if not matches[2] then
-tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '/getpro 1-100', 1,'md')
-else
+if msg.content_.text_:match("^[!/#]id") then 
+
 local function dl_photo(arg,data) 
 tdcli.sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, data.photos_[0].sizes_[1].photo_.persistent_id_,''..msg.sender_user_id_..'') 
 end
@@ -1493,7 +1488,36 @@ else
 getMessage(chat_id,msg.reply_to_message_id_,mute_reply,nil)
 end
 ---------------------------------------------
- 
+ --[[elseif text:match('^del (%d+)$') then
+  local pms = tonumber(text:match('^del (%d+)$'))
+  local user_id = msg.sender_user_id_
+local function hfunc (arg,data)
+print("hfunc ok")
+local chatid = arg.chatid
+local pmsg = arg.pms
+for k,v in pairs(data.messages_) do
+tdcli.deleteMessages(v.chat_id_,{[0] = v.id_})
+end
+end
+  if pms < 100 then
+	   tdcli_function ({
+    ID = "GetChatHistory",
+    chat_id_ = msg.chat_id_,
+    from_message_id_ = 0,
+    offset_ = 0,
+    limit_ = 100
+  }, hfunc, nil)
+  else 
+      tdcli_function ({
+    ID = "GetChatHistory",
+    chat_id_ = msg.chat_id_,
+    from_message_id_ = 0,
+    offset_ = 0,
+    limit_ = 100
+  }, hfunc, {chatid=msg.chat_id_,pms = (pms - 100)})
+  end
+  tdcli.sendMessage(chat_id, 0, 0, 1, nil, 'تعداد *'..pms..'* پیام آخر گروه به دستور *'..user_id..'* حذف شد', 1, 'md')]]
+---------------------------------------------
 elseif text:match('^(silent) (.*)$') and admin(data) then
 local matches = {text:match("(silent) (.*)")}
 local mute = matches[2]:gsub('@','')
