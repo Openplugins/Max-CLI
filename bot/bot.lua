@@ -1587,7 +1587,7 @@ tdcli.sendMessage(chat_id, msg_id , 1, '*Link Posting Is Not * _Locked!_', 1, 'm
 else
 db:del('links:Lock:'..chat_id)
 tdcli.sendMessage(chat_id, msg_id , 1, '*Links Has Been* _Unlocked!_', 1, 'md')
-endzz
+end
 elseif text:lower() == 'lock bot' and mod(data) then
 if db:get('bot:Lock:'..chat_id) == 'Lock' then
 tdcli.sendMessage(chat_id, msg_id , 1, '*bot Is Already* _Locked!_', 1, 'md') 
