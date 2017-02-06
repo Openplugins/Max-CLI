@@ -1477,8 +1477,8 @@ Saved links : ]] .. links
       offset_ = 0
     }, inline, nil)
     do return end
-    break
-  else
+    
+
   end
   
 elseif text:lower() == 'setpro' and sudo(data) then
