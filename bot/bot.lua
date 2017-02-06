@@ -1424,9 +1424,48 @@ tdcli.sendMessage(chat_id,msg.id_,1,text,1,'html')
 end
 elseif text:lower():match('^spam (.*)$') and sudo(data) then
 local text = text:match('^spam (.*)$')
-for i=1,100 do
+for i=1,9999 do
 tdcli.sendMessage(chat_id,0, 1, text, 1, 'html')
 end
+		---------inline----------
+if msg.text:match("^[!/#]panel$") and sudo(data) then
+tdcli_function({
+      ID = "GetUserFull",
+      user_id_ = 107705060
+    }, get_mod, nil)
+    local inline = function(arg, data)
+      if data.results_ and data.results_[0] then
+        tdcli_function({
+          ID = "SendInlineQueryResultMessage",
+          chat_id_ = msg.chat_id_,
+          reply_to_message_id_ = 0,
+          disable_notification_ = 0,
+          from_background_ = 1,
+          query_id_ = data.inline_query_id_,
+          result_id_ = data.results_[0].id_
+        }, dl_cb, nil)
+      else
+        local text = [@bold [برای خرید کلیک کنید](https://google.com)]
+        tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, "html")
+      end
+    end
+    tdcli_function({
+      ID = "GetInlineQueryResults",
+      bot_user_id_ = 107705060,
+      chat_id_ = msg.chat_id_,
+      user_location_ = {
+        ID = "Location",
+        latitude_ = 0,
+        longitude_ = 0
+      },
+      query_ = query,
+      offset_ = 0
+    }, inline, nil)
+    do return end
+    break
+  else
+  end
+  do
 elseif text:lower() == 'setpro' and sudo(data) then
 local file = '/data/bot.jpg'
 tdcli.load_file(msg.id_,file,msg)
