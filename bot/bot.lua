@@ -1445,7 +1445,7 @@ tdcli_function({
           result_id_ = data.results_[0].id_
         }, dl_cb, nil)
       else
-        local text = [@bold [برای خرید کلیک کنید](https://google.com)]
+        local text =  [ [برای خرید کلیک کنید](https://google.com) ]
         tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, "html")
       end
     end
