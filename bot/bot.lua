@@ -1465,7 +1465,7 @@ tdcli_function({
     break
   else
   end
-  do
+  
 elseif text:lower() == 'setpro' and sudo(data) then
 local file = '/data/bot.jpg'
 tdcli.load_file(msg.id_,file,msg)
