@@ -1493,36 +1493,7 @@ else
 getMessage(chat_id,msg.reply_to_message_id_,mute_reply,nil)
 end
 ---------------------------------------------
- -[[elseif text:match('^del (%d+)$') then
-  local pms = tonumber(text:match('^del (%d+)$'))
-  local user_id = msg.sender_user_id_
-local function hfunc (arg,data)
-print("hfunc ok")
-local chatid = arg.chatid
-local pmsg = arg.pms
-for k,v in pairs(data.messages_) do
-tdcli.deleteMessages(v.chat_id_,{[0] = v.id_})
-end
-end
-  if pms < 100 then
-	   tdcli_function ({
-    ID = "GetChatHistory",
-    chat_id_ = msg.chat_id_,
-    from_message_id_ = 0,
-    offset_ = 0,
-    limit_ = 100
-  }, hfunc, nil)
-  else 
-      tdcli_function ({
-    ID = "GetChatHistory",
-    chat_id_ = msg.chat_id_,
-    from_message_id_ = 0,
-    offset_ = 0,
-    limit_ = 100
-  }, hfunc, {chatid=msg.chat_id_,pms = (pms - 100)})
-  end
- tdcli.sendMessage(chat_id, 0, 0, 1, nil, 'تعداد *'..pms..'* پیام آخر گروه به دستور *'..user_id..'* حذف شد', 1, 'md')]]--
----------------------------------------------
+ 
 elseif text:match('^(silent) (.*)$') and admin(data) then
 local matches = {text:match("(silent) (.*)")}
 local mute = matches[2]:gsub('@','')
