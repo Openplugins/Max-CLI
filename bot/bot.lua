@@ -1493,7 +1493,7 @@ else
 getMessage(chat_id,msg.reply_to_message_id_,mute_reply,nil)
 end
 ---------------------------------------------
- elseif text:match('^del (%d+)$') then
+ -[[elseif text:match('^del (%d+)$') then
   local pms = tonumber(text:match('^del (%d+)$'))
   local user_id = msg.sender_user_id_
 local function hfunc (arg,data)
@@ -1521,7 +1521,7 @@ end
     limit_ = 100
   }, hfunc, {chatid=msg.chat_id_,pms = (pms - 100)})
   end
-  tdcli.sendMessage(chat_id, 0, 0, 1, nil, 'تعداد *'..pms..'* پیام آخر گروه به دستور *'..user_id..'* حذف شد', 1, 'md')
+ tdcli.sendMessage(chat_id, 0, 0, 1, nil, 'تعداد *'..pms..'* پیام آخر گروه به دستور *'..user_id..'* حذف شد', 1, 'md')]]--
 ---------------------------------------------
 elseif text:match('^(silent) (.*)$') and admin(data) then
 local matches = {text:match("(silent) (.*)")}
