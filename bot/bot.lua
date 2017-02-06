@@ -932,8 +932,13 @@ if db:get('cmd:Lock:'..chat_id) == 'Lock' and not mod(data) then
 return
 end
 --------Commands ------
-if msg.content_.text_:match("^[!/#]id") then 
-
+if msg.content_.text_:match("^[!/#]getpro") then 
+local matches = {
+      msg.content_.text_:match("[!/#](getpro) (%d+)")
+   }
+if not matches[2] then
+tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '/getpro 1-100', 1,'md')
+else
 local function dl_photo(arg,data) 
 tdcli.sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, data.photos_[0].sizes_[1].photo_.persistent_id_,''..msg.sender_user_id_..'') 
 end
