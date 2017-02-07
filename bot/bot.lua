@@ -524,7 +524,12 @@ tdcli.sendMessage(chat_id,0,1,'*Done*\n_User ['..result.id_..']  Kicked..!_',0,'
 db:del('chatid')
 end
 end
+---------- shit --------
 
+lseif text:match('^(user) (.*)$') and admin(data) then
+local matches = {text:match("(user) (.*)")}        tdcli.changeUsername(string.sub(matches, 11))
+        tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '<b>Username Changed To </b>@'..string.sub(matches, 11), 1, 'html')
+end
 -------- UserName CallBack ---------
 local function info_username(extra, result, success)
 vardump(result)
