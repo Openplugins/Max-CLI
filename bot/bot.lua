@@ -525,7 +525,8 @@ db:del('chatid')
 end
 end
 --------test-------------------
-elseif text:lower() == "num" and admin(data) then
+local function run(msg, matches)
+if  matches[1] == 'botnumber' then
 function get_id(arg, data)
 if data.last_name_ then
     tdcli.sendContact(arg.chat_id, msg.id_, 0, 1, nil, data.phone_number_, data.first_name_, data.last_name_ , data.id_, dl_cb, nil )
