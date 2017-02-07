@@ -524,18 +524,7 @@ tdcli.sendMessage(chat_id,0,1,'*Done*\n_User ['..result.id_..']  Kicked..!_',0,'
 db:del('chatid')
 end
 end
---------test-------------------
-if text:lower() == 'bot' and mod(data) then
-function get_id(arg, data)
-if data.last_name_ then
-    tdcli.sendContact(arg.chat_id, msg.id_, 0, 1, nil, data.phone_number_, data.first_name_, data.last_name_ , data.id_, dl_cb, nil )
-else
-tdcli.sendContact(arg.chat_id, msg.id_, 0, 1, nil, data.phone_number_, data.first_name_, '' , data.id_, dl_cb, nil )
 
-end
- end
-tdcli_function({ ID = 'GetMe'}, get_id, {chat_id=msg.chat_id_})
-end
 -------- UserName CallBack ---------
 local function info_username(extra, result, success)
 vardump(result)
