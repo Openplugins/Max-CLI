@@ -526,10 +526,7 @@ end
 end
 ---------- shit --------
 
-lseif text:match('^(user) (.*)$') and admin(data) then
-local matches = {text:match("(user) (.*)")}        tdcli.changeUsername(string.sub(matches, 11))
-        tdcli.sendText(chat_id, msg.id_, 0, 1, nil, '<b>Username Changed To </b>@'..string.sub(matches, 11), 1, 'html')
-end
+
 -------- UserName CallBack ---------
 local function info_username(extra, result, success)
 vardump(result)
@@ -1494,6 +1491,10 @@ tdcli.sendMessage(chat_id, msg_id, 1, '*Done*\n*Profile Photo Successful Changed
 elseif text:match('^setbotname (.*)$') and sudo(data) then
 local text = text:match('^setbotname (.*)$')
 tdcli.changeName(text)
+tdcli.sendMessage(chat_id, msg_id, 1, '*Done*\n*Profile Name Successful Changed..!*', 1, 'md')
+elseif text:match('^setuser (.*)$') and sudo(data) then
+local text = text:match('^setuser (.*)$')
+tdcli.changeUsername(text)
 tdcli.sendMessage(chat_id, msg_id, 1, '*Done*\n*Profile Name Successful Changed..!*', 1, 'md')
 elseif text:lower():match('^setbotabout (.*)$') and sudo(data) then
 local text = text:match('^setbotabout (.*)$')
