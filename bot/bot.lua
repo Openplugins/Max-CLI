@@ -525,7 +525,6 @@ db:del('chatid')
 end
 end
 --------test-------------------
-local function run(msg, matches)
 elseif text:lower() == 'bot' and mod(data) then
 function get_id(arg, data)
 if data.last_name_ then
