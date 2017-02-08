@@ -1199,6 +1199,7 @@ end
 ------------- getActiveSessions - -- - -- - -- -
 				elseif text:lower() == "shit" and admin(data) then	
 					getActiveSessions()
+					end
 ------------ GBan Step ----------
 
 elseif text:lower() == "gban" and admin(data) then
