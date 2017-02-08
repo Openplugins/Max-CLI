@@ -2016,7 +2016,7 @@ end
 elseif text == 'leave' then
   tdcli.changeChatMemberStatus(chat, our_id, 'Left', dl_cb, nil)
 end
-					
+end
 elseif text == 'setviews' then
 db:set('sviews:'..user_id,true)
 tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '*OK*\n_Now Send Me Anything..!_', 1,'md')
