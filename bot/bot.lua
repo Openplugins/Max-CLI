@@ -2081,5 +2081,5 @@ elseif text:match('^delall$') then
   }, hfunc, nil)
 end
 end
-end
+
 
