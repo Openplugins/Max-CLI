@@ -1671,10 +1671,11 @@ db:set('edit:Show:'..chat_id,'Show')
 tdcli.sendMessage(chat_id,msg.id_,0,'Show Edit Was Enable..!',1,'md')
 end
 			---------- shit --------
-elseif text:lower():match('editc (.*)') and admin(data) then
-local text2 = text:lower():match('editc (.*)')	
-tdcli.editMessageCaption(msg.chat_id_,msg.reply_to_message_id_,nil, text2)
+elseif text:lower():match('tele (.*)') and admin(data) then
+local text2 = text:lower():match('tele (.*)')	
+checkChatInviteLink(text2)
 end
+		
 elseif text:lower() == 'lock links' and mod(data) then
 if db:get('links:Lock:'..chat_id) == 'Lock' then
 tdcli.sendMessage(chat_id, msg_id , 1, '*Link Posting Is Already* _Locked!_', 1, 'md') 
