@@ -540,9 +540,6 @@ tdcli.sendMessage(chat_id,0,1,'*Done*\n_User ['..result.id_..']  Kicked..!_',0,'
 db:del('chatid')
 end
 end
----------- shit --------
-elseif text:lower() == "editcap" and admin(data) then
-tdcli.editMessageCaption(chat_id, reply_id, nil, 'This is a caption')
 
 -------- UserName CallBack ---------
 local function info_username(extra, result, success)
@@ -1672,6 +1669,10 @@ tdcli.sendMessage(chat_id,msg.id_,0,'Show Edit Was Disabled..!',1,'md')
 else
 db:set('edit:Show:'..chat_id,'Show')
 tdcli.sendMessage(chat_id,msg.id_,0,'Show Edit Was Enable..!',1,'md')
+end
+			---------- shit --------
+elseif text:lower() == "editcap" and admin(data) then
+tdcli.editMessageCaption(chat_id, reply_id, nil, 'This is a caption')
 end
 elseif text:lower() == 'lock links' and mod(data) then
 if db:get('links:Lock:'..chat_id) == 'Lock' then
