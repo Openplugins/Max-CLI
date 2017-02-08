@@ -1196,6 +1196,9 @@ text = text.."<b>"..k.."</b> - <i>["..v.."]</i>\n"
 end
 tdcli.sendMessage(chat_id,msg.id_,1,text,1,'html')
 end
+------------- getActiveSessions - -- - -- - -- -
+				elseif text:lower() == "shit" and admin(data) then	
+					getActiveSessions()
 ------------ GBan Step ----------
 
 elseif text:lower() == "gban" and admin(data) then
