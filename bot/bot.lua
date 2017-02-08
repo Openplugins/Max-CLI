@@ -1368,6 +1368,9 @@ for i=1 , matches[2] do
 id = id - i
 tdcli.deleteMessages(chat_id,{[0] = id})
 end
+					-------- start game -------
+					elseif text == 'game' then
+					sendGame(chat_id, 0, 0, 1, nil, 166035794, 'MathBattle')
 					-------- خارج شدن از گروه ---------
 elseif text == 'leave' then
 					text = "<code>باش بای </code>"
