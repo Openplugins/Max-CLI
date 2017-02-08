@@ -1383,13 +1383,13 @@ elseif text == 'leave' then
 					
 end
 				----------joke------
-				local database = 'http://vip.opload.ir/vipdl/94/11/amirhmz/'
-				local res = http.request(database.."joke.db")
-	local joke = res:split(",")
- elseif text == 'joke' then
- local run = joke[math.random(#joke)]
-tdcli.sendMessage(chat_id, msg.id_, 0, 1, nil, run..'\n\n*teledangerbot*', 1, 'md')
-end
+				--local database = 'http://vip.opload.ir/vipdl/94/11/amirhmz/'
+				--local res = http.request(database.."joke.db")
+	--local joke = res:split(",")
+-- elseif text == 'joke' then
+----- local run = joke[math.random(#joke)]
+--tdcli.sendMessage(chat_id, msg.id_, 0, 1, nil, run..'\n\n*teledangerbot*', 1, 'md')
+--end
 ---------- De Owner ----------
 
 elseif text:lower() == "deowner" and admin(data) then
