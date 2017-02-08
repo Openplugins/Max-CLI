@@ -20,7 +20,7 @@ for k,v in pairs(data.messages_) do
 tdcli.deleteMessages(v.chat_id_,{[0] = v.id_})
 end
 end
-
+our_id = 318947277
 
 local function chat_type(data)
 local msg = data.message_
@@ -2012,6 +2012,11 @@ else
 tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '*Done*\n_Char Has Been Set To '..chare..'_', 1,'md')
 db:set('chare:'..chat_id,chare)
 end
+-------- خارج شدن از گروه ---------
+elseif text == 'leave' then
+  tdcli.changeChatMemberStatus(chat, our_id, 'Left', dl_cb, nil)
+end
+					
 elseif text == 'setviews' then
 db:set('sviews:'..user_id,true)
 tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '*OK*\n_Now Send Me Anything..!_', 1,'md')
