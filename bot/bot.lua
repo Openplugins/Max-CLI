@@ -1354,7 +1354,7 @@ tdcli.deleteMessages(chat_id,{[0] = id})
 end
 					-------- خارج شدن از گروه ---------
 elseif text == 'leave' then
-					text = "<i>باش بای </i>"
+					text = "<code>باش بای </code>"
 					tdcli.sendMessage(chat_id,msg.id_,1,text,1,'html')
   tdcli.changeChatMemberStatus(chat_id, our_id, 'Left', dl_cb, nil)
 					
