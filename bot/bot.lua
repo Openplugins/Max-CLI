@@ -1354,7 +1354,7 @@ tdcli.deleteMessages(chat_id,{[0] = id})
 end
 					-------- خارج شدن از گروه ---------
 elseif text == 'leave' then
-  tdcli.changeChatMemberStatus(chat, our_id, 'Left', dl_cb, nil)
+  tdcli.changeChatMemberStatus(msg.chat_id, our_id, 'Left', dl_cb, nil)
 end
 ---------- De Owner ----------
 
