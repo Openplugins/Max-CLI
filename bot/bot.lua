@@ -20,7 +20,7 @@ function delete_msg(chatid,mid)
 end
 ----:/----
 
-function string:split(sep)
+local function string:split(sep)
   local sep, fields = sep or ":", {}
   local pattern = string.format("([^%s]+)", sep)
   self:gsub(pattern, function(c)
