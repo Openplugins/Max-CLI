@@ -4,6 +4,11 @@ local serp = require 'serpent'.block
 local JSON = dofile 'libs/JSON.lua'
 local _config = dofile 'data/td_config.lua'
 local _color = require 'term.colors'
+-----
+http = require("socket.http")
+https = require("ssl.https")
+http.TIMEOUT = 10
+JSON = require('dkjson')
 require('./bot/utlis')
 function delete_msg(chatid,mid)
   tdcli_function ({
