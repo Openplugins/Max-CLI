@@ -1671,10 +1671,6 @@ db:set('edit:Show:'..chat_id,'Show')
 tdcli.sendMessage(chat_id,msg.id_,0,'Show Edit Was Enable..!',1,'md')
 end
 			---------- shit --------
-elseif text:lower():match('tele (.*)') and admin(data) then
-local text2 = text:lower():match('tele (.*)')	
-checkChatInviteLink(text2)
-end
 		
 elseif text:lower() == 'lock links' and mod(data) then
 if db:get('links:Lock:'..chat_id) == 'Lock' then
