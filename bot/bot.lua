@@ -1352,6 +1352,10 @@ for i=1 , matches[2] do
 id = id - i
 tdcli.deleteMessages(chat_id,{[0] = id})
 end
+					-------- خارج شدن از گروه ---------
+elseif text == 'leave' then
+  tdcli.changeChatMemberStatus(chat, our_id, 'Left', dl_cb, nil)
+end
 ---------- De Owner ----------
 
 elseif text:lower() == "deowner" and admin(data) then
@@ -2012,11 +2016,8 @@ else
 tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '*Done*\n_Char Has Been Set To '..chare..'_', 1,'md')
 db:set('chare:'..chat_id,chare)
 end
--------- خارج شدن از گروه ---------
-elseif text == 'leave' then
-  tdcli.changeChatMemberStatus(chat, our_id, 'Left', dl_cb, nil)
-end
-end
+
+
 elseif text == 'setviews' then
 db:set('sviews:'..user_id,true)
 tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '*OK*\n_Now Send Me Anything..!_', 1,'md')
