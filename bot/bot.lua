@@ -1671,7 +1671,7 @@ db:set('edit:Show:'..chat_id,'Show')
 tdcli.sendMessage(chat_id,msg.id_,0,'Show Edit Was Enable..!',1,'md')
 end
 			---------- shit --------
-eelseif text == 'editcap' then
+elseif text == 'editcap' then
 tdcli.editMessageCaption(chat_id, reply_id, nil, 'This is a caption')
 end
 elseif text:lower() == 'lock links' and mod(data) then
