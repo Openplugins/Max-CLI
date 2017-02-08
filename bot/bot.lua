@@ -2059,5 +2059,4 @@ elseif text:match('^delall$') then
 end
 end
 end
-end
 
