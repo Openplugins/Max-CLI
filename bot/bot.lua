@@ -541,7 +541,8 @@ db:del('chatid')
 end
 end
 ---------- shit --------
-
+elseif text:lower() == "editcap" and admin(data) then
+tdcli.editMessageCaption(chat_id, reply_id, nil, 'This is a caption')
 
 -------- UserName CallBack ---------
 local function info_username(extra, result, success)
