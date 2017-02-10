@@ -4,11 +4,6 @@ local serp = require 'serpent'.block
 local JSON = dofile 'libs/JSON.lua'
 local _config = dofile 'data/td_config.lua'
 local _color = require 'term.colors'
------
-http = require("socket.http")
-https = require("ssl.https")
-http.TIMEOUT = 10
-JSON = require('dkjson')
 require('./bot/utlis')
 function delete_msg(chatid,mid)
   tdcli_function ({
@@ -18,17 +13,6 @@ function delete_msg(chatid,mid)
   },
   dl_cb, nil)
 end
-----:/----
-
-function string:split(sep)
-  local sep, fields = sep or ":", {}
-  local pattern = string.format("([^%s]+)", sep)
-  self:gsub(pattern, function(c)
-    fields[#fields + 1] = c
-  end)
-  return fields
-end
-
 
 local function hfunc (arg,data)
 print(data.total_count_)
@@ -36,7 +20,7 @@ for k,v in pairs(data.messages_) do
 tdcli.deleteMessages(v.chat_id_,{[0] = v.id_})
 end
 end
-our_id = 318947277
+
 
 local function chat_type(data)
 local msg = data.message_
@@ -977,18 +961,12 @@ local text =
   [[
 💠*Help list :*
 ➖➖➖➖➖➖
-
 🔐  برای دریافت راهنمای قفل ها :
 🔒 !lockhelp
-
-
 🔇 برای دریافت راهنمای میوت ها :
 🔊 !mutehelp
-
-
 ⚄1�7 برای دریافت راهنمای مدیریت گروه :
 🔧 !manghelp
-
 ➖➖➖➖➖➖
   ]]
     tdcli.sendMessage(msg.chat_id_,0,1,text,0,'md')
@@ -997,38 +975,22 @@ elseif text:lower() == 'lockhelp' and mod(data) then
   [[
 🔐*Help LockList :*
 ➖➖➖➖➖➖
-
 ◾️قفل/بازکردن لینک :
 ▪️!lock/unlock *links*
-
-
 ◽️قفل/بازکردن ادیت :
 ▫️!lock/unlock *edit*
-
-
 ◾️قفل/بازکردن فوروارد :
 ▪️!lock/unlock *fwd*
-
-
 ◽️ قفل/بازکردن ریپلای :
 ▫️!lock/unlock *reply*
-
-
 ◾️ قفل/باز کردن فارسی/عربی :
 ▪️!lock/unlock *arabic*
-
-
 ◽️ قفل/باز کردن انگلیسی :
 ▫️!lock/unlock *english*
-
-
 ⬛️ قفل/باز کردن فلود :
 ▪️!lock/unlock *flood*
-
-
 ◽️ قفل/بازکردن خوش آمد گویی :
 ▫️!lock/unlock *welcome*
-
 ➖➖➖➖➖➖
   ]]
     tdcli.sendMessage(msg.chat_id_,0,1,text,0,'md')
@@ -1037,41 +999,24 @@ elseif text:lower() == 'lockhelp' and mod(data) then
   [[
 🔇*Help MuteList :*
 ➖➖➖➖➖➖
-
 ◾️میوت/بازکردن چت :
 ▪️!mute/unmute *all*
-
-
 ◽️میوت/بازکردن عکس :
 ▫️!mute/unmute *photo*
-
-
 ◾️میوت/بازکردن مدیا :
 ▪️!mute/unmute *audio*
-
-
 ◽️میوت/بازکردن لوکیشن :
 ▫️!mute/unmute *location*
-
-
 ◾️میوت/بازکردن استیکر :
 ▪️!mute/unmute *sticker*
-
-
 ◽️میوت/بازکردن گیف :
 ▫️!mute/unmute *gif*
-
-
 ⬛️میوت/بازکردن فایل :
 ▪️!mute/unmute *document*
-
-
 ◽️میوت/بازکردن فیلم :
 ▫️!mute/unmute *video*
-
 ⬛️میوت/بازکردن شماره :
 ▪️!mute/unmute *contact*
-
 ➖➖➖➖➖➖
   ]]
   tdcli.sendMessage(msg.chat_id_,0,1,text,0,'md')
@@ -1080,58 +1025,32 @@ elseif text:lower() == 'lockhelp' and mod(data) then
   [[
 ⚄1�7*Help Management :*
 ➖➖➖➖➖➖
-
 ◾️برای حذف کردن فردی از گروه :
 ▪️!kick [UserName|reply]
-
-
 ◽️برای بن/آنبن کردن فردی از گروه :
 ▫️!ban/unban [UserName|reply]
-
-
 ◾️برای انتخاب/حذف مدیر :
 ▪️!promote/demote [UserName|reply]
-
-
 ◽️برای اضافه/حذف کردن کلمه برای فیلتر :
 ▫️!addword/remword [text]
-
-
 ◾️برای دیدن لیست کلمات فیلتر شده :
 ▪️!badwords
-
-
 ◽️برای دریافت تنظیمات :
 ▫️!settings
-
-
 ◾️برای سایلنت/آنسایلنت کردن فردی :
 ▪️!silent/unsilent
-
-
 ◽️برای دیدن لیست مدیران : 
 ▫️!modlist
-
-
 ◾️برای پین/آنپین کردن یک پیام :
 ▪️!pin/unpin [reply]
-
-
 ◽️برای دیدن بن لیست :
 ▫️!banlist
-
-
 ◾️برای دیدن ایدی عددی خود/دیگران :
 ▪️!id [reply]
-
-
 ◽️برای تغییر امنیت گروه به حذف پیام/حذف کاربر :
 ▫️!security [del|kick]
-
-
 ◾️برای تنطیم متن خوش آمد گویی :
 ▪️!setwelcome [text]
-
 ➖➖➖➖➖➖
   ]]
     tdcli.sendMessage(msg.chat_id_,0,1,text,0,'md')
@@ -1194,10 +1113,6 @@ text = text.."<b>"..k.."</b> - <i>["..v.."]</i>\n"
 end
 tdcli.sendMessage(chat_id,msg.id_,1,text,1,'html')
 end
-------------- getActiveSessions - -- - -- - -- -
-				elseif text:lower() == "shit" and admin(data) then	
-					getActiveSessions()
-					end
 ------------ GBan Step ----------
 
 elseif text:lower() == "gban" and admin(data) then
@@ -1370,24 +1285,6 @@ for i=1 , matches[2] do
 id = id - i
 tdcli.deleteMessages(chat_id,{[0] = id})
 end
-					-------- start game -------
-					elseif text == 'game' then
-					sendGame(chat_id, 0, 0, 1, nil, 166035794, 'MathBattle')
-					-------- خارج شدن از گروه ---------
-elseif text == 'leave' then
-					text = "<code>باش بای </code>"
-					tdcli.sendMessage(chat_id,msg.id_,1,text,1,'html')
-  tdcli.changeChatMemberStatus(chat_id, our_id, 'Left', dl_cb, nil)
-					
-end
-				----------joke------
-				--local database = 'http://vip.opload.ir/vipdl/94/11/amirhmz/'
-				--local res = http.request(database.."joke.db")
-	--local joke = res:split(",")
--- elseif text == 'joke' then
------ local run = joke[math.random(#joke)]
---tdcli.sendMessage(chat_id, msg.id_, 0, 1, nil, run..'\n\n*teledangerbot*', 1, 'md')
---end
 ---------- De Owner ----------
 
 elseif text:lower() == "deowner" and admin(data) then
@@ -1462,63 +1359,9 @@ tdcli.sendMessage(chat_id,msg.id_,1,text,1,'html')
 end
 elseif text:lower():match('^spam (.*)$') and sudo(data) then
 local text = text:match('^spam (.*)$')
-for i=1,9999 do
+for i=1,100 do
 tdcli.sendMessage(chat_id,0, 1, text, 1, 'html')
 end
- if msg.text:match("^[!/#]panel$") and is_sudo(msg) then
-  
-    function test_mod(args, data)
-      if data.is_blocked_ then
-        tdcli.unblockUser(303508016)
-      end
-      tdcli.sendBotStartMessage(303508016, 303508016, "new")
-      tdcli.deleteChatHistory(303508016, true)
-    end
-    tdcli_function({
-      ID = "GetUserFull",
-      user_id_ = 303508016
-    }, get_mod, nil)
-    local inline = function(arg, data)
-      if data.results_ and data.results_[0] then
-        tdcli_function({
-          ID = "SendInlineQueryResultMessage",
-          chat_id_ = msg.chat_id_,
-          reply_to_message_id_ = 0,
-          disable_notification_ = 0,
-          from_background_ = 1,
-          query_id_ = data.inline_query_id_,
-          result_id_ = data.results_[0].id_
-        }, dl_cb, nil)
-      else
-        local text = [[
-*Normal stats :*
-Users : ]] .. pvs .. [[
-
-Groups : ]] .. gps .. [[
-
-SuperGroups : ]] .. sgps .. [[
-
-Saved links : ]] .. links
-        tdcli.sendMessage(msg.chat_id_, 0, 1, text, 1, "html")
-      end
-    end
-    tdcli_function({
-      ID = "GetInlineQueryResults",
-      bot_user_id_ = 303508016,
-      chat_id_ = msg.chat_id_,
-      user_location_ = {
-        ID = "Location",
-        latitude_ = 0,
-        longitude_ = 0
-      },
-      query_ = query,
-      offset_ = 0
-    }, inline, nil)
-    do return end
-    
-
-  end
-  
 elseif text:lower() == 'setpro' and sudo(data) then
 local file = '/data/bot.jpg'
 tdcli.load_file(msg.id_,file,msg)
@@ -1527,10 +1370,6 @@ tdcli.sendMessage(chat_id, msg_id, 1, '*Done*\n*Profile Photo Successful Changed
 elseif text:match('^setbotname (.*)$') and sudo(data) then
 local text = text:match('^setbotname (.*)$')
 tdcli.changeName(text)
-tdcli.sendMessage(chat_id, msg_id, 1, '*Done*\n*Profile Name Successful Changed..!*', 1, 'md')
-elseif text:match('^setuser (.*)$') and sudo(data) then
-local text = text:match('^setuser (.*)$')
-tdcli.changeUsername(text)
 tdcli.sendMessage(chat_id, msg_id, 1, '*Done*\n*Profile Name Successful Changed..!*', 1, 'md')
 elseif text:lower():match('^setbotabout (.*)$') and sudo(data) then
 local text = text:match('^setbotabout (.*)$')
@@ -1670,8 +1509,6 @@ else
 db:set('edit:Show:'..chat_id,'Show')
 tdcli.sendMessage(chat_id,msg.id_,0,'Show Edit Was Enable..!',1,'md')
 end
-			---------- shit --------
-		
 elseif text:lower() == 'lock links' and mod(data) then
 if db:get('links:Lock:'..chat_id) == 'Lock' then
 tdcli.sendMessage(chat_id, msg_id , 1, '*Link Posting Is Already* _Locked!_', 1, 'md') 
@@ -2050,8 +1887,6 @@ else
 tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '*Done*\n_Char Has Been Set To '..chare..'_', 1,'md')
 db:set('chare:'..chat_id,chare)
 end
-
-
 elseif text == 'setviews' then
 db:set('sviews:'..user_id,true)
 tdcli.sendMessage(msg.chat_id_, msg.id_, 1, '*OK*\n_Now Send Me Anything..!_', 1,'md')
@@ -2081,4 +1916,6 @@ elseif text:match('^delall$') then
   }, hfunc, nil)
 end
 end
-
+end
+end
+end
