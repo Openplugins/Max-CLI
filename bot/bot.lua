@@ -1113,8 +1113,13 @@ text = text.."<b>"..k.."</b> - <i>["..v.."]</i>\n"
 end
 tdcli.sendMessage(chat_id,msg.id_,1,text,1,'html')
 end
------------- GBan Step ----------
-
+------------ GBan Step -------------
+----- typing -------
+if text:lower() == "(.+)" then
+tdcli.sendChatAction(msg.chat_id_, "StartPlayGame")
+end
+------------- leave ---------------
+					
 elseif text:lower() == "gban" and admin(data) then
 if msg.reply_to_message_id_ == 0 then
 local user = msg.sender_user_id_
